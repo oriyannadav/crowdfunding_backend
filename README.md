@@ -1,9 +1,9 @@
-# StartFundr
+# ScholariGo
 by Oriyan Nadav
 She Codes crowdfunding project - DRF Backend.
 
 ## About
-Welcome to StartFundr, the crowdfunding platform dedicated to empowering small local businesses and startups! Our core purpose is to provide an accessible and user-friendly platform that enables entrepreneurs to raise funds and turn their visions into successful ventures. Whether you're a budding entrepreneur with a brilliant concept or an existing local business looking to expand your operations, StartFundr is here to support you every step of the way. We understand that securing funding can be challenging, especially for startups and local businesses, which is why we've designed StartFundr to be a hub for connecting passionate entrepreneurs with a community of enthusiastic backers. By harnessing the collective power of the crowd, we aim to foster innovation, drive economic growth, and create opportunities for businesses to thrive. Join StartFundr today and witness the magic of collective support transforming dreams into reality.
+Welcome to ScholariGo, the leading crowdfunding platform dedicated to making higher education accessible for all aspiring students! At ScholariGo, our primary purpose is to bridge the financial gap and empower students who dream of pursuing higher education but face financial constraints. We understand the soaring costs of university tuition can be a significant hurdle for many students and their families. That's why we've created ScholariGo, a platform that connects determined students with compassionate individuals, alumni, and organizations who believe in the transformative power of education. Our mission is to ensure that no deserving student is deprived of the opportunity to study at their dream university due to financial limitations. If you are a motivated student seeking to pursue higher education or a generous supporter who believes in the value of education, join ScholariGo today and become part of a community that is shaping brighter futures and unlocking the potential of talented minds. Together, we can break down barriers and pave the way for a more equitable and educated world.
 
 ## Features
 {{ The features your MVP will include. (Remember this is a working document, you can change these as you go!) }}
