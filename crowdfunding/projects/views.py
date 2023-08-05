@@ -60,7 +60,7 @@ class ProjectDetail(APIView):
 
 
 class PledgeList(APIView):
-
+    
     def get(self, request):
         pledges = Pledge.objects.all()
         serializer = PledgeSerializer(pledges, many=True)
