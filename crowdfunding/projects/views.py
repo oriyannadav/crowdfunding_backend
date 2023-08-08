@@ -68,7 +68,7 @@ class ProjectDetail(APIView):
 
 
 class PledgeList(APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsUserAllowed]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     
     def get(self, request):
         pledges = Pledge.objects.all()
@@ -91,9 +91,16 @@ class PledgeList(APIView):
 
 class PledgeDetail(APIView):
     permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly,
-        IsOwnerOrReadOnly
+        permissions.IsAuthenticatedOrReadOnly, IsUserAllowed
     ]
+
+    def get_object(self, pk):
+        try:
+            pledge = Pledge.objects.get(pk=pk)
+            self.check_object_permissions(self.request, pledge)
+            return pledge
+        except Pledge.DoesNotExist:
+            raise Http404
 
     def put(self, request, pk):
         pledge = self.get_object(pk)
@@ -123,21 +130,3 @@ class PledgeDetail(APIView):
                 {'detail': 'You do not have permission to delete this pledge.'},
                 status=status.HTTP_403_FORBIDDEN
             )
-
-    def patch(self, request, *args, **kwargs):
-        pledge = self.get_object()
-        serializer = self.get_serializer(
-            instance=pledge,
-            data=request.data,
-            partial=True
-        )
-        if serializer.is_valid():
-            serializer.save(supporter=request.user)
-            return Response(
-                serializer.data,
-                status=status.HTTP_200_OK
-            )
-        return Response(
-            serializer.errors,
-            status=status.HTTP_400_BAD_REQUEST
-        )
