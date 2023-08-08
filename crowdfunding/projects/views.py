@@ -1,10 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Project, Pledge
-from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer
+from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer, PledgeDetailSerializer
 from django.http import Http404
 from rest_framework import status, permissions
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly, IsUserAllowed
 
 
 class ProjectList(APIView):
@@ -68,7 +68,7 @@ class ProjectDetail(APIView):
 
 
 class PledgeList(APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsUserAllowed]
     
     def get(self, request):
         pledges = Pledge.objects.all()
@@ -82,6 +82,60 @@ class PledgeList(APIView):
             return Response(
                 serializer.data,
                 status=status.HTTP_201_CREATED
+            )
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+
+class PledgeDetail(APIView):
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerOrReadOnly
+    ]
+
+    def put(self, request, pk):
+        pledge = self.get_object(pk)
+        serializer = PledgeDetailSerializer(
+            instance=pledge,
+            data=request.data,
+            partial=True
+        )
+        if serializer.is_valid():
+            serializer.save(supporter=request.user)
+            return Response(
+                serializer.data,
+                status=status.HTTP_201_CREATED
+            )
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    def delete(self, request, *args, **kwargs):
+        pledge = self.get_object()
+        if pledge.supporter == request.user:
+            pledge.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(
+                {'detail': 'You do not have permission to delete this pledge.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+    def patch(self, request, *args, **kwargs):
+        pledge = self.get_object()
+        serializer = self.get_serializer(
+            instance=pledge,
+            data=request.data,
+            partial=True
+        )
+        if serializer.is_valid():
+            serializer.save(supporter=request.user)
+            return Response(
+                serializer.data,
+                status=status.HTTP_200_OK
             )
         return Response(
             serializer.errors,
