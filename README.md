@@ -1,23 +1,42 @@
-# ScholariGo
+# Schoolr
 by Oriyan Nadav
 She Codes crowdfunding project - DRF Backend.
 
 ## About
-Welcome to ScholariGo, the leading crowdfunding platform dedicated to making higher education accessible for all aspiring students! At ScholariGo, our primary purpose is to bridge the financial gap and empower students who dream of pursuing higher education but face financial constraints. We understand the soaring costs of university tuition can be a significant hurdle for many students and their families. That's why we've created ScholariGo, a platform that connects determined students with compassionate individuals, alumni, and organizations who believe in the transformative power of education. Our mission is to ensure that no deserving student is deprived of the opportunity to study at their dream university due to financial limitations. If you are a motivated student seeking to pursue higher education or a generous supporter who believes in the value of education, join ScholariGo today and become part of a community that is shaping brighter futures and unlocking the potential of talented minds. Together, we can break down barriers and pave the way for a more equitable and educated world.
+
+Welcome to Schoolr, the leading crowdfunding platform dedicated to making higher education accessible for all aspiring students! At Schoolr, our primary purpose is to bridge the financial gap and empower students who dream of pursuing higher education but face financial constraints. We understand the soaring costs of university tuition can be a significant hurdle for many students and their families. That's why we've created Schoolr, a platform that connects determined students with compassionate individuals, alumni, and organizations who believe in the transformative power of education. Our mission is to ensure that no deserving student is deprived of the opportunity to study at their dream university due to financial limitations. If you are a motivated student seeking to pursue higher education or a generous supporter who believes in the value of education, join Schoolr today and become part of a community that is shaping brighter futures and unlocking the potential of talented minds. Together, we can break down barriers and pave the way for a more equitable and educated world.
 
 ## Features
-{{ The features your MVP will include. (Remember this is a working document, you can change these as you go!) }}
-* [] Username
-* [] Email
-* [] Password
-* [] Image
-* [] Bio
 
+* [x] Have a clear target audience.
+* [x] Have user accounts. A user should have at least the following attributes:
+    * [x] Username
+    * [x] Email address
+    * [x] Password
+* [x] Ability to create a “project” to be crowdfunded which will include at least thefollowing attributes:
+    * [x] Title
+    * [x] Owner (a user)
+    * [x] Description
+    * [x] Image
+    * [x] Target amount to fundraise
+    * [x] Whether it is currently open to accepting new supporters or not
+    * [x] When the project was created
+* [x] Ability to “pledge” to a project. A pledge should include at least the followingattributes:
+    * [x] An amount
+    * [x] The project the pledge is for
+    * [x] The supporter/user (i.e. who created the pledge)
+    * [x] Whether the pledge is anonymous or not
+    * [x] A comment to go along with the pledge
+    * [ ] Implement suitable update/delete functionality, e.g. should a project owner be allowed to update a project description?
+* [ ] Implement suitable permissions, e.g. who is allowed to delete a pledge?
+* [ ] Return the relevant status codes for both successful and unsuccessful requeststo the API.
+* [ ] Handle failed requests gracefully (e.g. you should have a custom 404 page rather than the default error page).
+* [x] Use Token Authentication.
+* [ ] Implement responsive design
 
 ### Stretch Goals
-{{ Outline three features that will be your stretch goals if you finish your MVP }}
 
-* [] Commnets section
+* [] Comments section
 * [] Update account
 * [] Update posts
 * [] Delete posts only for creators
@@ -81,15 +100,3 @@ Deployed Project: [Deployed website](http://linkhere.com/)
 
 * [] A screenshot of Insomnia, demonstrating a token being returned.
 ![image info goes here](./docs/image.png)
-
-
-
-
-
-
-
-
-
-
-
-
