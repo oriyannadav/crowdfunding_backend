@@ -1,9 +1,9 @@
+from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status, permissions
 from .models import Project, Pledge
 from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer, PledgeDetailSerializer
-from django.http import Http404
-from rest_framework import status, permissions
 from .permissions import IsOwnerOrReadOnly, IsUserAllowed
 
 
@@ -120,7 +120,7 @@ class PledgeDetail(APIView):
             status=status.HTTP_400_BAD_REQUEST
         )
 
-    def delete(self, request, *args, **kwargs):
+    def delete(self, request, pk):
         pledge = self.get_object()
         if pledge.supporter == request.user:
             pledge.delete()
