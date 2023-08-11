@@ -29,7 +29,7 @@ Welcome to Schoolr, the leading crowdfunding platform dedicated to making higher
     * [x] A comment to go along with the pledge
     * [ ] Implement suitable update/delete functionality, e.g. should a project owner be allowed to update a project description?
 * [ ] Implement suitable permissions, e.g. who is allowed to delete a pledge?
-* [ ] Return the relevant status codes for both successful and unsuccessful requeststo the API.
+* [x] Return the relevant status codes for both successful and unsuccessful requeststo the API.
 * [ ] Handle failed requests gracefully (e.g. you should have a custom 404 page rather than the default error page).
 * [x] Use Token Authentication.
 * [ ] Implement responsive design
@@ -37,9 +37,9 @@ Welcome to Schoolr, the leading crowdfunding platform dedicated to making higher
 ### Stretch Goals
 
 * [] Comments section
-* [] Update account
+* [x] Update user details
 * [] Update posts
-* [] Delete posts only for creators
+* [] Delete posts/pledges only for creators
 * [] Option to get notified about how the post is going (achieved their goal, not yet, close)
 
 ## API Specification
@@ -59,16 +59,16 @@ Welcome to Schoolr, the leading crowdfunding platform dedicated to making higher
 ![Data_base_schema](/screenshots/db_schema.png)
 
 ## Wireframes
-{{ Insert your wireframes }}
-
-![image info goes here](./docs/image.png)
+![Wireframes](/screenshots/wireframe.png)
 
 ## Colour Scheme
 
-![image info goes here](/screenshots/Color-Palette.png)
+![Colour_scheme](/screenshots/Color-Palette.png)
 
 ## Fonts
-{{ outline your heading & body font(s) }}
+
+* Heading - Montserrat (typeface)
+* Body - Raleway
 
 ## Submission Documentation
 {{ Fill this section out for submission }}
