@@ -27,8 +27,8 @@ Welcome to Schoolr, the leading crowdfunding platform dedicated to making higher
     * [x] The supporter/user (i.e. who created the pledge)
     * [x] Whether the pledge is anonymous or not
     * [x] A comment to go along with the pledge
-    * [ ] Implement suitable update/delete functionality, e.g. should a project owner be allowed to update a project description?
-* [ ] Implement suitable permissions, e.g. who is allowed to delete a pledge?
+    * [x] Implement suitable update/delete functionality, e.g. should a project owner be allowed to update a project description?
+* [x] Implement suitable permissions, e.g. who is allowed to delete a pledge?
 * [x] Return the relevant status codes for both successful and unsuccessful requeststo the API.
 * [ ] Handle failed requests gracefully (e.g. you should have a custom 404 page rather than the default error page).
 * [x] Use Token Authentication.
@@ -36,23 +36,28 @@ Welcome to Schoolr, the leading crowdfunding platform dedicated to making higher
 
 ### Stretch Goals
 
-* [] Comments section
 * [x] Update user details
-* [] Update posts
-* [] Delete posts/pledges only for creators
-* [] Option to get notified about how the post is going (achieved their goal, not yet, close)
+* [x] Update posts
+* [x] Delete posts/pledges only for creators
+* [x] A user can delete themselves 
+* [] Option to get notified about how the post is going (achieved their goal, not yet, close)- frontend
 
 ## API Specification
 
 | HTTP Method | Url | Purpose | Request Body | Successful Response Code | Authentication <br /> Authorization
 | --- | ------- | ------ | ---- | -----| ----|
+| GET | /users/ | Return all uers | N/A | 200 | N/A |
+| POST | /uers/ | Create a new users | Project object | 201 | N/A |
+| PATCH | /users/1 | Updates the user with an ID of "1" | Project object | 201 | User must be logged in. | User must be logged in. |
+| DELETE | /users/1 | Delete the user with an ID of "1" | N/A | 200 | User must be logged in. Pk should be logged in user. |
 | GET | /projects/ | Return all projects | N/A | 200 | N/A |
 | POST | /projects/ | Create a new project | Project object | 201 | User must be logged in. |
 | GET | /projects/1 | Return project with an ID of "1" | Project object | 200 | N/A |
 | PUT | /projects/1 | Updates the project with an ID of "1" | Project object | 200 | User must be logged in. User must be the owner of the project. | User must be logged in. User must be the owner of the project. |
-| POST | /pledges/ | Create a new pledge | Pledge object | 201 | User must be logged in. User must be the owner of the project. |
+| DELETE | /projects/1 | Delete the project with an ID of "1" | N/A | 200 | User must be logged in. User must be the owner of the project. |
+| POST | /pledges/ | Create a new pledge | Pledge object | 201 | User must be logged in. User must not be the owner of the project. |
 | GET | /pledges/1 | Get the pledges with an ID of "1" | N/A | 200 | N/A |
-| DELETE | /pledges/1 | Delete the pledges with an ID of "1" | N/A | 200 | User must be logged in. User must be the owner of the project. |
+| DELETE | /pledges/1 | Delete the pledges with an ID of "1" | N/A | 200 | User must be logged in. User must be the owner of the pledge. |
 
 ## Database Schema
 
@@ -71,32 +76,28 @@ Welcome to Schoolr, the leading crowdfunding platform dedicated to making higher
 * Body - Raleway
 
 ## Submission Documentation
-{{ Fill this section out for submission }}
 
-Deployed Project: [Deployed website](http://linkhere.com/)
+Deployed Project: [Deployed website](https://schoolr.fly.dev/projects/)
 
-### How To Run
-{{ What steps to take to run this code }}
+![Deployed website](/screenshots/deployed-website1.png)
+![Deployed website](/screenshots/deployed-website2.png)
 
-### Updated Database Schema
-{{ Updated schema }}
-
-![image info goes here](./docs/image.png)
-
-### Updated Wireframes
+<!-- ### Updated Wireframes
 {{  Updated wireframes }}
 
-![image info goes here](./docs/image.png)
+![image info goes here](./docs/image.png) -->
 
 ### How To Register a New User
-{{ Step by step instructions for how to register a new user and create a new project (i.e. endpoints and body data). }}
+
+To begin, you can register a new user by sending a POST request to "https://schoolr.fly.dev/users/", including the desired username and password in the JSON body. Next, obtain a user token by using another POST request at "https://schoolr.fly.dev/api-token-auth/", providing the username and password in the JSON body to receive the token. With the token in hand, you can create a new project by sending a POST request to "https://schoolr.fly.dev/projects/". In the request's Authorization header, select "Bearer Token" and enter the previously obtained token in the "Token" section, prefixing it with "Token". In the JSON body of the request, provide details such as the project's title, description, goal, image, openness status, and creation date. This sequence of steps guides you through user registration, token acquisition, and project creation seamlessly.
 
 ### Screenshots
-* [] A screenshot of Insomnia, demonstrating a successful GET method for any endpoint.
-![image info goes here](./docs/image.png)
+* [x] A screenshot of Insomnia, demonstrating a successful GET method for any endpoint.
+![Get_request](/screenshots/get-request.png)
+![Get_request2](/screenshots/get-request2.png)
 
-* [] A screenshot of Insomnia, demonstrating a successful POST method for any endpoint.
-![image info goes here](./docs/image.png)
+* [x] A screenshot of Insomnia, demonstrating a successful POST method for any endpoint.
+![Post_request](/screenshots/post-request.png)
 
-* [] A screenshot of Insomnia, demonstrating a token being returned.
-![image info goes here](./docs/image.png)
+* [x] A screenshot of Insomnia, demonstrating a token being returned.
+![User-token](/screenshots/user-token.png)
