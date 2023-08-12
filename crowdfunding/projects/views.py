@@ -121,7 +121,7 @@ class PledgeDetail(APIView):
         )
 
     def delete(self, request, pk):
-        pledge = self.get_object()
+        pledge = self.get_object(pk)
         if pledge.supporter == request.user:
             pledge.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
