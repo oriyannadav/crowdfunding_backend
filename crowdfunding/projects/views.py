@@ -65,6 +65,17 @@ class ProjectDetail(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
+    
+    def delete(self, request, pk):
+        project = self.get_object(pk)
+        if project.owner == request.user:
+            project.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(
+                {'detail': 'You do not have permission to delete this project.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
 
 
 class PledgeList(APIView):
